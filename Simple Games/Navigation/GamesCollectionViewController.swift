@@ -50,9 +50,9 @@ class GamesCollectionViewController: UICollectionViewController {
         
         switch indexPath.row {
         case 0:
-            vc = UIViewController()
+            vc = GameViewController(game: Game.TheWall)
         case 1:
-            vc = UIViewController()
+            vc = GameViewController(game: Game.Columns)
         default:
             return
         }
