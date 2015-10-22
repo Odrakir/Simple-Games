@@ -36,6 +36,26 @@ let levels = [
         "00000bbbbb00000",
         "000000bbb000000",
         "0000000b0000000"        
+    ],
+    [
+        "-",
+        "-",        
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00",
+        "00rr0rr0rr0rr00"
     ]
 ]
 
