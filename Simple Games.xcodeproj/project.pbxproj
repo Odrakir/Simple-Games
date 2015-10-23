@@ -12,14 +12,11 @@
 		8C2B41B81BD80199009539FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B41B61BD80199009539FA /* Main.storyboard */; };
 		8C2B41BA1BD80199009539FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B41B91BD80199009539FA /* Assets.xcassets */; };
 		8C2B41C31BD80360009539FA /* GamesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41C21BD80360009539FA /* GamesCollectionViewController.swift */; };
-		8C2B41C71BD80661009539FA /* theWall_cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B41C61BD80661009539FA /* theWall_cover.png */; };
 		8C2B41C91BD80697009539FA /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41C81BD80697009539FA /* GameCell.swift */; };
-		8C2B41CB1BD80848009539FA /* columns_cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B41CA1BD80848009539FA /* columns_cover.png */; };
 		8C2B41D01BD808EA009539FA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41CF1BD808EA009539FA /* GameViewController.swift */; };
 		8C2B41D21BD80A35009539FA /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2B41D11BD80A35009539FA /* SpriteKit.framework */; };
 		8C2B41D41BD80A4F009539FA /* TheWallScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41D31BD80A4F009539FA /* TheWallScene.swift */; };
 		8C2B41D61BD80AB6009539FA /* GridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41D51BD80AB6009539FA /* GridNode.swift */; };
-		8C2B41D81BD80B75009539FA /* background_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B41D71BD80B75009539FA /* background_pattern.png */; };
 		8C2B41DB1BD80C42009539FA /* ColumnsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41DA1BD80C42009539FA /* ColumnsScene.swift */; };
 		8C2B41DD1BD8197C009539FA /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41DC1BD8197C009539FA /* BlockNode.swift */; };
 		8CE4E47B1BD8DD5600676AE3 /* BallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4E47A1BD8DD5600676AE3 /* BallNode.swift */; };
@@ -36,14 +33,11 @@
 		8C2B41B91BD80199009539FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C2B41BB1BD80199009539FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C2B41C21BD80360009539FA /* GamesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GamesCollectionViewController.swift; path = Navigation/GamesCollectionViewController.swift; sourceTree = "<group>"; };
-		8C2B41C61BD80661009539FA /* theWall_cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = theWall_cover.png; sourceTree = "<group>"; };
 		8C2B41C81BD80697009539FA /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCell.swift; path = Navigation/GameCell.swift; sourceTree = "<group>"; };
-		8C2B41CA1BD80848009539FA /* columns_cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = columns_cover.png; sourceTree = "<group>"; };
 		8C2B41CF1BD808EA009539FA /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = Games/Common/GameViewController.swift; sourceTree = "<group>"; };
 		8C2B41D11BD80A35009539FA /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		8C2B41D31BD80A4F009539FA /* TheWallScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheWallScene.swift; path = Games/TheWall/TheWallScene.swift; sourceTree = "<group>"; };
 		8C2B41D51BD80AB6009539FA /* GridNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GridNode.swift; path = Games/Common/GridNode.swift; sourceTree = "<group>"; };
-		8C2B41D71BD80B75009539FA /* background_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_pattern.png; sourceTree = "<group>"; };
 		8C2B41DA1BD80C42009539FA /* ColumnsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColumnsScene.swift; path = Games/Columns/ColumnsScene.swift; sourceTree = "<group>"; };
 		8C2B41DC1BD8197C009539FA /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockNode.swift; path = Games/TheWall/BlockNode.swift; sourceTree = "<group>"; };
 		8CE4E47A1BD8DD5600676AE3 /* BallNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BallNode.swift; path = Games/TheWall/BallNode.swift; sourceTree = "<group>"; };
@@ -108,19 +102,8 @@
 		8C2B41C41BD80661009539FA /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				8C2B41C51BD80661009539FA /* images */,
 			);
 			path = assets;
-			sourceTree = "<group>";
-		};
-		8C2B41C51BD80661009539FA /* images */ = {
-			isa = PBXGroup;
-			children = (
-				8C2B41D71BD80B75009539FA /* background_pattern.png */,
-				8C2B41CA1BD80848009539FA /* columns_cover.png */,
-				8C2B41C61BD80661009539FA /* theWall_cover.png */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		8C2B41CC1BD808AD009539FA /* Games */ = {
@@ -221,11 +204,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C2B41C71BD80661009539FA /* theWall_cover.png in Resources */,
 				8C2B41BA1BD80199009539FA /* Assets.xcassets in Resources */,
 				8C2B41B81BD80199009539FA /* Main.storyboard in Resources */,
-				8C2B41D81BD80B75009539FA /* background_pattern.png in Resources */,
-				8C2B41CB1BD80848009539FA /* columns_cover.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
