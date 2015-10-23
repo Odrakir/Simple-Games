@@ -11,16 +11,18 @@ import SpriteKit
 
 let levels = [
     [
-    "-",
-    "-",
-    "-",
-    "-",
-    "bbbbbbbbbbbbbbb",
-    "rrrrrrrrrrrrrrr",
-    "ooooooooooooooo",
-    "ggggggggggggggg",
-    "yyyyyyyyyyyyyyy"
-        ],
+        "-",
+        "-",
+        "-",
+        "-",
+        "ppppppppppppppp",
+        "bbbbbbbbbbbbbbb",
+        "rrrrrrrrrrrrrrr",
+        "ooooooooooooooo",
+        "yyyyyyyyyyyyyyy",
+        "ggggggggggggggg",
+        
+    ],
     [
         "-",
         "-",
@@ -35,11 +37,11 @@ let levels = [
         "0000bbbrbbb0000",
         "00000bbbbb00000",
         "000000bbb000000",
-        "0000000b0000000"        
+        "0000000b0000000"
     ],
     [
         "-",
-        "-",        
+        "-",
         "00rr0rr0rr0rr00",
         "00rr0rr0rr0rr00",
         "00rr0rr0rr0rr00",
@@ -64,7 +66,7 @@ class LevelManager
     
     var currentLevel:Int?
     
-    func loadNextLevel(blocksNode:SKNode)
+    func loadNextLevel(blocksNode:SKNode, delegate:BlockNodeDelegate)
     {
         if let _ =  currentLevel {
             currentLevel! += 1
@@ -93,12 +95,13 @@ class LevelManager
                     block.zPosition = 1
                     block.physicsBody!.categoryBitMask = BlockCategory
                     block.physicsBody!.collisionBitMask = 0
+                    block.delegate = delegate
                     blocksNode.addChild(block)
                 }
                 c++
             }
             l++
         }
-
+        
     }
 }

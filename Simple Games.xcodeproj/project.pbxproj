@@ -173,6 +173,7 @@
 				8C2B41A91BD80199009539FA /* Sources */,
 				8C2B41AA1BD80199009539FA /* Frameworks */,
 				8C2B41AB1BD80199009539FA /* Resources */,
+				8CB2B6971BDA288E008828EE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -229,6 +230,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8CB2B6971BDA288E008828EE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh $SRCROOT/scripts/set_build_number.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8C2B41A91BD80199009539FA /* Sources */ = {

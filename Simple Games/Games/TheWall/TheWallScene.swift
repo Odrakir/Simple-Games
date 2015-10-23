@@ -66,13 +66,13 @@ class TheWallScene: GameScene {
         ball.physicsBody!.contactTestBitMask = BlockCategory|TopWallCategory|RightWallCategory|LeftWallCategory|BottomWallCategory|PaddleCategory
         gameNode.addChild(ball)
         
-        paddle.position = CGPoint(x: GRID_WIDTH/2.0, y: 80)
+        paddle.position = CGPoint(x: GRID_WIDTH/2.0, y: 80 - 20)
         paddle.physicsBody!.categoryBitMask = PaddleCategory
         paddle.physicsBody!.collisionBitMask = 0
         gameNode.addChild(paddle)
         
         setupLimits()
-        loadLevel()
+        nextLevel()
         
         let pan = UIPanGestureRecognizer(target: self, action: Selector("pan:"))
         self.view?.addGestureRecognizer(pan)
@@ -89,7 +89,7 @@ class TheWallScene: GameScene {
     
     func nextLevel()
     {
-        levelManager.loadNextLevel(blocksNode)
+        levelManager.loadNextLevel(blocksNode, delegate:self)
     }
     
     func setupLimits()
@@ -149,11 +149,6 @@ class TheWallScene: GameScene {
                 paddleVelocity = 0.0
             }
         }
-    }
-    
-    func loadLevel()
-    {
-        levelManager.loadNextLevel(blocksNode)
     }
     
     var dragging = false
@@ -236,7 +231,7 @@ extension TheWallScene:SKPhysicsContactDelegate
             }
             
 
-            (secondBody.node as? BlockNode)?.explode()
+            (secondBody.node as? BlockNode)?.hit()
             
             //let sound = pingSounds[0]
             //self.runAction(sound)
@@ -262,6 +257,19 @@ extension TheWallScene:SKPhysicsContactDelegate
             break
         }
 
+    }
+}
+
+extension TheWallScene:BlockNodeDelegate
+{
+    func blockExploded(block: BlockNode) {
+
+        block.removeFromParent()
+        
+        if blocksNode.children.count == 0 {
+            ballInPlay = false
+            nextLevel()
+        }
     }
 }
 
