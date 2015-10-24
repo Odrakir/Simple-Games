@@ -8,14 +8,13 @@
 
 import UIKit
 import SpriteKit
-import GameController
 
 enum Game {
     case TheWall
     case Columns
 }
 
-class GameViewController: GCEventViewController {
+class GameViewController: UIViewController {
     
     let game:Game
     var scene:GameScene?
@@ -60,14 +59,5 @@ class GameViewController: GCEventViewController {
         }
 
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        controllerUserInteractionEnabled = false
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        controllerUserInteractionEnabled = true
-    }
+
 }
