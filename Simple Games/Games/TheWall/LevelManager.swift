@@ -15,8 +15,8 @@ let levels = [
         "-",
         "-",
         "-",
-        "ppppppppppppppp",
         "bbbbbbbbbbbbbbb",
+        "ppppppppppppppp",
         "rrrrrrrrrrrrrrr",
         "ooooooooooooooo",
         "yyyyyyyyyyyyyyy",
@@ -63,10 +63,11 @@ let levels = [
 
 class LevelManager
 {
+    static var GRID_HEIGHT:CGFloat = 0
     
     var currentLevel:Int?
     
-    func loadNextLevel(blocksNode:SKNode, delegate:BlockNodeDelegate)
+    func loadNextLevel(blocksNode:SKNode, category:UInt32, delegate:BlockNodeDelegate)
     {
         if let _ =  currentLevel {
             currentLevel! += 1
@@ -91,9 +92,9 @@ class LevelManager
             for b in line.characters {
                 if String(b) != "0" {
                     let block = BlockNode(type:String(b))
-                    block.position = CGPoint(x: CGFloat(c*80) + 40, y: GRID_HEIGHT - CGFloat(l*40) - 20)
+                    block.position = CGPoint(x: CGFloat(c*80) + 40, y: LevelManager.GRID_HEIGHT - CGFloat(l*40) - 20)
                     block.zPosition = 1
-                    block.physicsBody!.categoryBitMask = BlockCategory
+                    block.physicsBody!.categoryBitMask = category
                     block.physicsBody!.collisionBitMask = 0
                     block.delegate = delegate
                     blocksNode.addChild(block)

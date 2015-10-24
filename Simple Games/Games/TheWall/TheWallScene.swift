@@ -9,26 +9,28 @@
 import UIKit
 import SpriteKit
 
-let BallCategory   : UInt32 = 0x1 << 0
-let BlockCategory  : UInt32 = 0x1 << 1
-let PaddleCategory : UInt32 = 0x1 << 2
-let TopWallCategory    : UInt32 = 0x1 << 3
-let RightWallCategory  : UInt32 = 0x1 << 4
-let LeftWallCategory   : UInt32 = 0x1 << 5
-let BottomWallCategory : UInt32 = 0x1 << 6
-
-let GRID_WIDTH:CGFloat = 1200
-let GRID_HEIGHT:CGFloat = 1000
-
 class TheWallScene: GameScene {
+        
+    let BallCategory   : UInt32 = 0x1 << 0
+    let BlockCategory  : UInt32 = 0x1 << 1
+    let PaddleCategory : UInt32 = 0x1 << 2
+    let TopWallCategory    : UInt32 = 0x1 << 3
+    let RightWallCategory  : UInt32 = 0x1 << 4
+    let LeftWallCategory   : UInt32 = 0x1 << 5
+    let BottomWallCategory : UInt32 = 0x1 << 6
 
-
+    let GRID_WIDTH:CGFloat = 1200
+    let GRID_HEIGHT:CGFloat = 1000
     
     let levelManager = LevelManager()
     
     let gameNode = SKNode()
     let blocksNode = SKNode()
-    let grid = GridNode(size: CGSize(width: GRID_WIDTH, height: GRID_HEIGHT))
+    var grid:GridNode {
+        get {
+            return GridNode(size: CGSize(width: GRID_WIDTH, height: GRID_HEIGHT))
+        }
+    }
     let ball = BallNode()
     let paddle = PaddleNode()
     
@@ -39,6 +41,7 @@ class TheWallScene: GameScene {
         
         self.backgroundColor = SKColor(red: 210/255.0, green: 210/255.0, blue: 210/255.0, alpha: 1.0)
 
+        LevelManager.GRID_HEIGHT = GRID_HEIGHT
         
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         physicsWorld.contactDelegate = self
@@ -61,11 +64,13 @@ class TheWallScene: GameScene {
         top.physicsBody!.collisionBitMask = 0
         gameNode.addChild(top)
         
+        ball.zPosition = 2
         ball.physicsBody!.categoryBitMask = BallCategory
         ball.physicsBody!.collisionBitMask = 0
         ball.physicsBody!.contactTestBitMask = BlockCategory|TopWallCategory|RightWallCategory|LeftWallCategory|BottomWallCategory|PaddleCategory
         gameNode.addChild(ball)
-        
+       
+        paddle.zPosition = 2
         paddle.position = CGPoint(x: GRID_WIDTH/2.0, y: 80 - 20)
         paddle.physicsBody!.categoryBitMask = PaddleCategory
         paddle.physicsBody!.collisionBitMask = 0
@@ -89,7 +94,7 @@ class TheWallScene: GameScene {
     
     func nextLevel()
     {
-        levelManager.loadNextLevel(blocksNode, delegate:self)
+        levelManager.loadNextLevel(blocksNode, category:BlockCategory, delegate:self)
     }
     
     func setupLimits()
