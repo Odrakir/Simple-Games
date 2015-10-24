@@ -26,16 +26,18 @@ class GamesCollectionViewController: UICollectionViewController {
         
         switch indexPath.row {
         case 0:
-            //  cell.nameLabel.text = "The Wall"
+            cell.titleLabel.text = "The Wall"
             cell.backgroundColor = UIColor.clearColor()
             cell.imageView.image = UIImage(named: "theWall_cover")
         case 1:
-            //  cell.nameLabel.text = "Columns"
+            cell.titleLabel.text = "Columns"
             cell.backgroundColor = UIColor.clearColor()
             cell.imageView.image = UIImage(named: "columns_cover")
         case 2:
-            //  cell.nameLabel.text = "Assault"
-            cell.backgroundColor = UIColor.blueColor()
+            cell.titleLabel.text = "More soon..."
+            cell.backgroundColor = UIColor.clearColor()
+            cell.imageView.image = UIImage(named: "more_cover")
+
         default:
             break
         }
