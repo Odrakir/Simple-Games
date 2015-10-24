@@ -261,6 +261,7 @@
 				8CB2B6A41BDA47C1008828EE /* Sources */,
 				8CB2B6A51BDA47C1008828EE /* Frameworks */,
 				8CB2B6A61BDA47C1008828EE /* Resources */,
+				8C27E7041BDB819300454F95 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -332,6 +333,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8C27E7041BDB819300454F95 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh $SRCROOT/scripts/set_build_number.sh";
+		};
 		8CB2B6971BDA288E008828EE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -490,11 +504,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RICARDO SANCHEZ SOTRES (2M7L3CQ9R2)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Simple Games/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.odrakir.Simple-Games";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b8e6fee9-6183-46d9-9354-ab992a246b50";
 			};
 			name = Debug;
 		};
@@ -503,21 +519,25 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RICARDO SANCHEZ SOTRES (2M7L3CQ9R2)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Simple Games/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.odrakir.Simple-Games";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b8e6fee9-6183-46d9-9354-ab992a246b50";
 			};
 			name = Release;
 		};
 		8CB2B6B41BDA47C1008828EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RICARDO SANCHEZ SOTRES (2M7L3CQ9R2)";
 				INFOPLIST_FILE = "Games Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.odrakir.Simple-Games.Games-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.odrakir.Simple-Games.TopShelf-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "59252d26-e3b2-4da9-b3b6-eb3982592b05";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -525,10 +545,12 @@
 		8CB2B6B51BDA47C1008828EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: RICARDO SANCHEZ SOTRES (2M7L3CQ9R2)";
 				INFOPLIST_FILE = "Games Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.odrakir.Simple-Games.Games-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.odrakir.Simple-Games.TopShelf-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "59252d26-e3b2-4da9-b3b6-eb3982592b05";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -561,6 +583,7 @@
 				8CB2B6B51BDA47C1008828EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
