@@ -175,6 +175,9 @@ class TheWallScene: GameScene {
             dragging = true
             break
         case UIGestureRecognizerState.Changed:
+            print("velocity \(paddleVelocity)")
+            print("translation \(translation)")
+            paddlePos = paddle.position.x + pow(paddleVelocity/500, 2) * (paddleVelocity < 0 ? -1 : 1)
             paddlePos = paddlePos < paddle.frame.size.width/2.0 ? paddle.frame.size.width/2.0 : (paddlePos > GRID_WIDTH - paddle.frame.size.width/2.0 ? GRID_WIDTH - paddle.frame.size.width/2.0 : paddlePos)
             paddle.position = CGPoint(x: paddlePos, y: paddle.position.y)
             if !ballInPlay {
