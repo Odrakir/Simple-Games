@@ -510,7 +510,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.odrakir.Simple-Games";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b8e6fee9-6183-46d9-9354-ab992a246b50";
+				PROVISIONING_PROFILE = "647565d8-0a63-4df5-a9a7-26937512805e";
 			};
 			name = Debug;
 		};
@@ -537,7 +537,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.odrakir.Simple-Games.TopShelf-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "59252d26-e3b2-4da9-b3b6-eb3982592b05";
+				PROVISIONING_PROFILE = "977d41b8-2b9e-42d3-96a0-28ac3c404cae";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;

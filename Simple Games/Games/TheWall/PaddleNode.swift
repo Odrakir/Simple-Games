@@ -20,6 +20,7 @@ class PaddleNode: SKShapeNode {
         self.strokeColor = SKColor.whiteColor()
         self.fillColor = SKColor.blackColor()
         self.lineWidth = 1.0
+
         
         physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 160, height: 40))
     }

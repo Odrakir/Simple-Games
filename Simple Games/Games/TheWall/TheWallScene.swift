@@ -25,7 +25,7 @@ class TheWallScene: GameScene {
     let levelManager = LevelManager()
     
     let gameNode = SKNode()
-    let blocksNode = SKNode()
+    let blocksNode = SKCropNode()
     var grid:GridNode {
         get {
             return GridNode(size: CGSize(width: GRID_WIDTH, height: GRID_HEIGHT))
@@ -45,12 +45,17 @@ class TheWallScene: GameScene {
         
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         physicsWorld.contactDelegate = self
-
         
         gameNode.position = CGPoint(x: 40, y: 40)
         addChild(gameNode)
         
         gameNode.addChild(blocksNode)
+        
+        let maskNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: GRID_WIDTH, height: GRID_HEIGHT))
+        maskNode.fillColor = UIColor.redColor()
+        blocksNode.maskNode = maskNode
+        blocksNode.zPosition = 2
+
         
         grid.zPosition = -1
         gameNode.addChild(grid)
@@ -170,7 +175,6 @@ class TheWallScene: GameScene {
             dragging = true
             break
         case UIGestureRecognizerState.Changed:
-            paddlePos = paddle.position.x + translation
             paddlePos = paddlePos < paddle.frame.size.width/2.0 ? paddle.frame.size.width/2.0 : (paddlePos > GRID_WIDTH - paddle.frame.size.width/2.0 ? GRID_WIDTH - paddle.frame.size.width/2.0 : paddlePos)
             paddle.position = CGPoint(x: paddlePos, y: paddle.position.y)
             if !ballInPlay {

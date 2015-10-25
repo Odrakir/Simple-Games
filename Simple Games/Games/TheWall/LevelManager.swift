@@ -16,11 +16,11 @@ let levels = [
         "-",
         "-",
         "bbbbbbbbbbbbbbb",
-        "ppppppppppppppp",
+        ".pppppppppppppppp",
         "rrrrrrrrrrrrrrr",
-        "ooooooooooooooo",
+        ".oooooooooooooooo",
         "yyyyyyyyyyyyyyy",
-        "ggggggggggggggg",
+        ".gggggggggggggggg",
         
     ],
     [
@@ -89,10 +89,15 @@ class LevelManager
                 continue
             }
             var c = 0
+            var offset:CGFloat = 0
             for b in line.characters {
+                if String(b) == "." {
+                    offset  = -0.5
+                    continue
+                }
                 if String(b) != "0" {
                     let block = BlockNode(type:String(b))
-                    block.position = CGPoint(x: CGFloat(c*80) + 40, y: LevelManager.GRID_HEIGHT - CGFloat(l*40) - 20)
+                    block.position = CGPoint(x: CGFloat(c*80) + 40 + offset*80, y: LevelManager.GRID_HEIGHT - CGFloat(l*40) - 20)
                     block.zPosition = 1
                     block.physicsBody!.categoryBitMask = category
                     block.physicsBody!.collisionBitMask = 0
