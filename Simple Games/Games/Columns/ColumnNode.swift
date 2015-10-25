@@ -15,11 +15,11 @@ class ColumnNode: SKNode {
     var middle:StoneNode
     var top:StoneNode
     
-    init(top:StoneNode, middle:StoneNode, bottom:StoneNode) {
+    init(column:Column) {
         
-        self.top = top
-        self.middle = middle
-        self.bottom = bottom
+        self.bottom = StoneNode(type: column.bottom.type)
+        self.middle = StoneNode(type: column.middle.type)
+        self.top = StoneNode(type: column.top.type)
         
         super.init()
         

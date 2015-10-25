@@ -16,7 +16,7 @@ protocol ColumnsEngineProtocol
     func update(currentTime: NSTimeInterval)
     func moveActiveColumn(newPositionX:Int)
     func swipeDown()
-    func flipColumn()
+    func tap()
 }
 
 
@@ -28,7 +28,7 @@ enum GridError:ErrorType
 let GRID_WIDTH = 6
 let GRID_HEIGHT = 13
 
-class ColumnsEngine:ColumnsEngineProtocol
+class ColumnsEngine
 {
     var scene:ColumnsSceneProtocol?
     
@@ -39,63 +39,10 @@ class ColumnsEngine:ColumnsEngineProtocol
     
     var grid = [Stone?](count: 13*6, repeatedValue: nil)
     
-    func start(scene:ColumnsSceneProtocol)
-    {
-        self.scene = scene
-        spawnColumn()
-    }
-    
     func spawnColumn()
     {
         activeColumn = Column()
         self.scene!.newActiveColumn()
-    }
-    
-    func update(currentTime: NSTimeInterval)
-    {
-        guard let activeColumn = activeColumn else {
-            return
-        }
-        
-        if (currentTime - timeOfLastMove < timePerMove) {
-            return
-        }
-        
-        timeOfLastMove = currentTime
-        
-        do {
-            if let _ = try cellAtPosition(activeColumn.position.offsetRow(-0.5)) {
-                fixColumn()
-            } else {
-                self.activeColumn!.position = activeColumn.position.offsetRow(-0.5)
-            }
-        } catch {
-            //out of bounds
-            fixColumn()
-        }
-    }
-    
-    func moveActiveColumn(newPositionX: Int)
-    {
-        guard let activePosition = activeColumn?.position else { return }
-        
-        let newActivePosition = ColumnPosition(column: newPositionX, row: activePosition.row)
-        var shouldMove = true
-        let _min = min(activePosition.column, newActivePosition.column)
-        let _max = max(activePosition.column, newActivePosition.column)
-        for i in Int(_min)...Int(_max) {
-            do {
-                if let _ = try cellAtPosition(ColumnPosition(column: i, row: newActivePosition.row)) {
-                    shouldMove = false
-                }
-            } catch {
-                //out of bounds
-            }
-        }
-        if(shouldMove) {
-            self.activeColumn?.position = newActivePosition
-        }
-        
     }
     
     func fixColumn()
@@ -189,38 +136,6 @@ class ColumnsEngine:ColumnsEngineProtocol
         }
     }
     
-    func swipeDown() {
-        if let currentPosition = activeColumn?.position {
-            
-            for r in 0..<Int(currentPosition.row) {
-                //TODO This is ugly
-                do {
-                    if let _ = try cellAtPosition(ColumnPosition(column:currentPosition.column, row:r)) {
-                        
-                    } else {
-                        let destination = ColumnPosition(column:currentPosition.column, row:r)
-                        activeColumn?.position = destination
-                        fixColumn()
-                    }
-                } catch {
-                    let destination = ColumnPosition(column:currentPosition.column, row:r)
-                    activeColumn?.position = destination
-                    fixColumn()
-                    break
-                }
-            }
-            
-        }
-    }
-    
-    func flipColumn() {
-        if let _ = activeColumn
-        {
-            self.activeColumn!.shuffle()
-            scene?.shuffleColumn()
-        }
-    }
-    
     func cellAtPosition(position:ColumnPosition) throws -> Stone?
     {
         if (position.column<0 || position.column >= 6 || position.row<0 || position.row >= 13) {
@@ -250,8 +165,6 @@ class ColumnsEngine:ColumnsEngineProtocol
     
     func removeGaps()
     {
-        
-        printGrid()
         for c in 0..<6 {
             var count = 0
             for r in 0..<13 {
@@ -266,23 +179,93 @@ class ColumnsEngine:ColumnsEngineProtocol
                 }
             }
         }
-        printGrid()
+    }
+}
+
+extension ColumnsEngine:ColumnsEngineProtocol
+{
+    func start(scene:ColumnsSceneProtocol)
+    {
+        self.scene = scene
+        spawnColumn()
     }
     
-    func printGrid()
+    func update(currentTime: NSTimeInterval)
     {
-        print("GRID:")
-        for r in 0..<13 {
-            var rowString = ""
-            for c in 0..<6 {
-                if let cell = try! cellAtPosition(ColumnPosition(column:c, row:12-r)) {
-                    rowString += " \(cell)"
-                } else {
-                    rowString += " -"
+        guard let activeColumn = activeColumn else {
+            return
+        }
+        
+        if (currentTime - timeOfLastMove < timePerMove) {
+            return
+        }
+        
+        timeOfLastMove = currentTime
+        
+        do {
+            if let _ = try cellAtPosition(activeColumn.position.offsetRow(-0.5)) {
+                fixColumn()
+            } else {
+                self.activeColumn!.position = activeColumn.position.offsetRow(-0.5)
+            }
+        } catch {
+            //out of bounds
+            fixColumn()
+        }
+    }
+    
+    func moveActiveColumn(newPositionX: Int)
+    {
+        guard let activePosition = activeColumn?.position else { return }
+        
+        let newActivePosition = ColumnPosition(column: newPositionX, row: activePosition.row)
+        var shouldMove = true
+        let _min = min(activePosition.column, newActivePosition.column)
+        let _max = max(activePosition.column, newActivePosition.column)
+        for i in Int(_min)...Int(_max) {
+            do {
+                if let _ = try cellAtPosition(ColumnPosition(column: i, row: newActivePosition.row)) {
+                    shouldMove = false
+                }
+            } catch {
+                //out of bounds
+            }
+        }
+        if(shouldMove) {
+            self.activeColumn?.position = newActivePosition
+        }
+        
+    }
+    
+    func swipeDown() {
+        if let currentPosition = activeColumn?.position {
+            
+            for r in 0..<Int(currentPosition.row) {
+                //TODO This is ugly
+                do {
+                    if let _ = try cellAtPosition(ColumnPosition(column:currentPosition.column, row:r)) {
+                        
+                    } else {
+                        let destination = ColumnPosition(column:currentPosition.column, row:r)
+                        activeColumn?.position = destination
+                        fixColumn()
+                    }
+                } catch {
+                    let destination = ColumnPosition(column:currentPosition.column, row:r)
+                    activeColumn?.position = destination
+                    fixColumn()
+                    break
                 }
             }
             
-            print(rowString)
+        }
+    }
+    
+    func tap() {
+        if let _ = activeColumn
+        {
+            self.activeColumn!.shuffle()
+            scene?.shuffleColumn()
         }
     }
 }

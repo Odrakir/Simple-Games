@@ -17,7 +17,7 @@ protocol ColumnsSceneProtocol
     func removeSprites(positionsToRemove:[ColumnPosition])
 }
 
-class ColumnsScene: GameScene, ColumnsSceneProtocol {
+class ColumnsScene: GameScene {
 
     let CELL_SIDE:CGFloat = 80
     let GRID_COLUMNS:CGFloat = 6
@@ -39,7 +39,7 @@ class ColumnsScene: GameScene, ColumnsSceneProtocol {
     var sprites = [[SKNode]](count: 6, repeatedValue: [])
     
     let gameNode = SKNode()
-
+    let spritesNode = SKCropNode()
 
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
@@ -49,9 +49,17 @@ class ColumnsScene: GameScene, ColumnsSceneProtocol {
         gameNode.position = CGPoint(x: 720, y: 20)
         addChild(gameNode)
         
+        gameNode.addChild(spritesNode)
+        
+        let maskNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: GRID_WIDTH, height: GRID_HEIGHT))
+        maskNode.fillColor = UIColor.redColor()
+        spritesNode.maskNode = maskNode
+        spritesNode.zPosition = 2
+        
         let grid = GridNode(size:CGSize(width: GRID_WIDTH, height: GRID_HEIGHT))
         grid.zPosition = -1
         gameNode.addChild(grid)
+        
         
         let pan = UIPanGestureRecognizer(target: self, action: Selector("pan:"))
         pan.delegate = self
@@ -69,79 +77,6 @@ class ColumnsScene: GameScene, ColumnsSceneProtocol {
         engine.start(self)
     }
     
-    func newActiveColumn() {
-        guard let activeColumn = engine.activeColumn else {
-            return
-        }
-        
-        
-        let bottom = StoneNode(type: activeColumn.bottom.type)
-        
-        let middle = StoneNode(type: activeColumn.middle.type)
-        
-        let top = StoneNode(type: activeColumn.top.type)
-        
-        activeColumnSprite = ColumnNode(top: top, middle: middle, bottom: bottom)
-        
-        activeColumnSprite!.position = CGPoint(x: CGFloat(activeColumn.position.column) * CELL_SIDE + CELL_SIDE/2.0, y: CGFloat(activeColumn.position.row) * CELL_SIDE + CELL_SIDE/2.0)
-        gameNode.addChild(activeColumnSprite!)
-    }
-    
-    func fixColumn() {
-        guard let activeColumnSprite = activeColumnSprite else { return }
-        guard let activeColumn = engine.activeColumn else { return }
-        
-        activeColumnSprite.position = CGPoint(x: CGFloat(activeColumn.position.column) * CELL_SIDE + CELL_SIDE/2.0, y: CGFloat(activeColumn.position.row) * CELL_SIDE + CELL_SIDE/2.0)
-        
-        for child in activeColumnSprite.children
-        {
-            let newPosition = activeColumnSprite.convertPoint(child.position, toNode: gameNode)
-            child.removeFromParent()
-            child.position = newPosition
-            gameNode.addChild(child)
-        }
-        
-        sprites[Int(activeColumn.position.column)] += [activeColumnSprite.bottom, activeColumnSprite.middle, activeColumnSprite.top]
-        
-        activeColumnSprite.removeFromParent()
-        self.activeColumnSprite = nil
-        
-        printSprites()
-    }
-    
-    func removeSprites(positionsToRemove:[ColumnPosition])
-    {
-        print(positionsToRemove)
-        for c in 0..<6 {
-            
-            let column_sprites = sprites[c]
-            var count = 0
-            var toRemove = Set<SKNode>()
-            
-            for r in 0..<column_sprites.count {
-                
-                let sprite = column_sprites[r]
-                
-                if count > 0 {
-                    let action = SKAction.moveBy(CGVector(dx: 0, dy: -CGFloat(count)*CELL_SIDE), duration: 0.3)
-                    sprite.runAction(action)
-                }
-                
-                if let _ = positionsToRemove.indexOf(ColumnPosition(column:c, row:r)) {
-                    toRemove.insert(sprite)
-                    count += 1
-                }
-                
-            }
-            
-            gameNode.removeChildrenInArray(Array(toRemove))
-            sprites[c] = column_sprites.filter { !toRemove.contains($0) }
-        }
-        
-        printSprites()
-    }
-    
-    
     override func update(currentTime: NSTimeInterval) {
         engine.update(currentTime)
         
@@ -149,6 +84,7 @@ class ColumnsScene: GameScene, ColumnsSceneProtocol {
             activeColumnSprite.position = CGPoint(x: CGFloat(activeColumn.position.column) * CELL_SIDE + CELL_SIDE/2.0, y: CGFloat(activeColumn.position.row) * CELL_SIDE + CELL_SIDE/2.0)
         }
     }
+    
     
     var initiaLocation:CGFloat = 0
     
@@ -173,12 +109,6 @@ class ColumnsScene: GameScene, ColumnsSceneProtocol {
         }
     }
     
-    func shuffleColumn() {
-        if let activeColumnSprite = activeColumnSprite
-        {
-            activeColumnSprite.shuffle()
-        }
-    }
     
     func swipe(recognizer:UISwipeGestureRecognizer)
     {
@@ -187,20 +117,75 @@ class ColumnsScene: GameScene, ColumnsSceneProtocol {
     }
     
     func tap(recognizer:UITapGestureRecognizer) {
-        engine.flipColumn()
+        engine.tap()
+    }
+}
+
+extension ColumnsScene:ColumnsSceneProtocol
+{
+    func newActiveColumn() {
+        guard let activeColumn = engine.activeColumn else {
+            return
+        }
+        
+        activeColumnSprite = ColumnNode(column: activeColumn)
+        activeColumnSprite!.position = CGPoint(x: CGFloat(activeColumn.position.column) * CELL_SIDE + CELL_SIDE/2.0, y: CGFloat(activeColumn.position.row) * CELL_SIDE + CELL_SIDE/2.0)
+        spritesNode.addChild(activeColumnSprite!)
     }
     
-    func printSprites()
+    func fixColumn() {
+        guard let activeColumnSprite = activeColumnSprite else { return }
+        guard let activeColumn = engine.activeColumn else { return }
+        
+        activeColumnSprite.position = CGPoint(x: CGFloat(activeColumn.position.column) * CELL_SIDE + CELL_SIDE/2.0, y: CGFloat(activeColumn.position.row) * CELL_SIDE + CELL_SIDE/2.0)
+        
+        for child in activeColumnSprite.children
+        {
+            let newPosition = activeColumnSprite.convertPoint(child.position, toNode: spritesNode)
+            child.removeFromParent()
+            child.position = newPosition
+            spritesNode.addChild(child)
+        }
+        
+        sprites[Int(activeColumn.position.column)] += [activeColumnSprite.bottom, activeColumnSprite.middle, activeColumnSprite.top]
+        
+        activeColumnSprite.removeFromParent()
+        self.activeColumnSprite = nil        
+    }
+
+    func shuffleColumn() {
+        if let activeColumnSprite = activeColumnSprite
+        {
+            activeColumnSprite.shuffle()
+        }
+    }
+    
+    func removeSprites(positionsToRemove:[ColumnPosition])
     {
         for c in 0..<6 {
-            let col = sprites[c]
-            var spriteStr = ""
-            for r in 0..<col.count {
-                let sprite = col[r]
-                spriteStr += " \(sprite)"
+            
+            let column_sprites = sprites[c]
+            var count = 0
+            var toRemove = Set<SKNode>()
+            
+            for r in 0..<column_sprites.count {
+                
+                let sprite = column_sprites[r]
+                
+                if count > 0 {
+                    let action = SKAction.moveBy(CGVector(dx: 0, dy: -CGFloat(count)*CELL_SIDE), duration: 0.3)
+                    sprite.runAction(action)
+                }
+                
+                if let _ = positionsToRemove.indexOf(ColumnPosition(column:c, row:r)) {
+                    toRemove.insert(sprite)
+                    count += 1
+                }
+                
             }
             
-            print(spriteStr)
+            spritesNode.removeChildrenInArray(Array(toRemove))
+            sprites[c] = column_sprites.filter { !toRemove.contains($0) }
         }
     }
 }
