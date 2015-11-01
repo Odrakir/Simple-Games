@@ -53,7 +53,7 @@ class TheWallScene: GameScene {
         
         let maskNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: GRID_WIDTH, height: GRID_HEIGHT))
         maskNode.fillColor = UIColor.redColor()
-        blocksNode.maskNode = maskNode
+       // blocksNode.maskNode = maskNode
         blocksNode.zPosition = 2
 
         

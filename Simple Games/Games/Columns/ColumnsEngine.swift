@@ -11,10 +11,12 @@ import Foundation
 protocol ColumnsEngineProtocol
 {
     var activeColumn:Column? { get }
+    var nextColumn:Column { get }
     
     func start(scene:ColumnsSceneProtocol)
     func update(currentTime: NSTimeInterval)
     func moveActiveColumn(newPositionX:Int)
+    func checkMatches()
     func swipeDown()
     func tap()
 }
@@ -32,6 +34,7 @@ class ColumnsEngine
 {
     var scene:ColumnsSceneProtocol?
     
+    var nextColumn = Column()
     var activeColumn:Column?
     
     var timePerMove = 0.5;
@@ -41,7 +44,8 @@ class ColumnsEngine
     
     func spawnColumn()
     {
-        activeColumn = Column()
+        activeColumn = nextColumn
+        nextColumn = Column()
         self.scene!.newActiveColumn()
     }
     
@@ -57,13 +61,6 @@ class ColumnsEngine
         
         self.activeColumn = nil
         
-        checkMatches() {
-            
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                self.spawnColumn()
-            }
-        }
     }
     
     
@@ -83,7 +80,7 @@ class ColumnsEngine
         }
     }
     
-    func checkMatches(completion:()->())
+    func checkMatches()
     {
         var matches = [Stone]()
         for c in 0..<6 {
@@ -127,12 +124,8 @@ class ColumnsEngine
             
             self.removeGaps()
             scene?.removeSprites(matches.map { $0.position! } )
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                self.checkMatches(completion)
-            }
         } else {
-            completion()
+            self.spawnColumn()
         }
     }
     
@@ -184,6 +177,7 @@ class ColumnsEngine
 
 extension ColumnsEngine:ColumnsEngineProtocol
 {
+
     func start(scene:ColumnsSceneProtocol)
     {
         self.scene = scene
