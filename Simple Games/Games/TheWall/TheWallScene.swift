@@ -26,6 +26,12 @@ class TheWallScene: GameScene {
     
     let gameNode = SKNode()
     let blocksNode = SKCropNode()
+    
+    var pingSounds = [SKAction.playSoundFileNamed("ping1.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("ping2.mp3", waitForCompletion: false)]
+    var puckSound = SKAction.playSoundFileNamed("puck.mp3", waitForCompletion: false)
+
+    
     var grid:GridNode {
         get {
             return GridNode(size: CGSize(width: GRID_WIDTH, height: GRID_HEIGHT))
@@ -39,8 +45,11 @@ class TheWallScene: GameScene {
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
         
-        self.backgroundColor = SKColor(red: 210/255.0, green: 210/255.0, blue: 210/255.0, alpha: 1.0)
-
+        let background = SKSpriteNode(imageNamed: "thewall_background")
+        background.zPosition = -3
+        background.position = CGPoint(x: view.bounds.size.width/2.0, y: view.bounds.size.height/2.0)
+        addChild(background)
+        
         LevelManager.GRID_HEIGHT = GRID_HEIGHT
         
         self.physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
@@ -53,7 +62,7 @@ class TheWallScene: GameScene {
         
         let maskNode = SKShapeNode(rect: CGRect(x: 0, y: 0, width: GRID_WIDTH, height: GRID_HEIGHT))
         maskNode.fillColor = UIColor.redColor()
-       // blocksNode.maskNode = maskNode
+        blocksNode.maskNode = maskNode
         blocksNode.zPosition = 2
 
         
@@ -220,11 +229,15 @@ extension TheWallScene:SKPhysicsContactDelegate
         switch secondBody.categoryBitMask {
         case TopWallCategory:
             ball.direction = CGVector(dx:ball.direction.dx, dy:-ball.direction.dy)
+            runAction(puckSound)
         case RightWallCategory, LeftWallCategory:
             ball.direction = CGVector(dx:-ball.direction.dx, dy:ball.direction.dy)
+            runAction(puckSound)
         case BottomWallCategory:
             //Loose
             ball.direction = CGVector(dx:ball.direction.dx, dy:-ball.direction.dy)
+            runAction(puckSound)
+       
         case BlockCategory:
             if (firstBody.node?.position.x >= (secondBody.node?.position.x)! + (secondBody.node?.frame.size.width)!/2.0) {
                 ball.direction = CGVector(dx: abs(ball.direction.dx), dy: ball.direction.dy)
@@ -245,8 +258,7 @@ extension TheWallScene:SKPhysicsContactDelegate
 
             (secondBody.node as? BlockNode)?.hit()
             
-            //let sound = pingSounds[0]
-            //self.runAction(sound)
+            runAction(pingSounds[0])
             
         case PaddleCategory:
             if (firstBody.node?.position.x > (secondBody.node?.position.x)! + (secondBody.node?.frame.size.width)!/2.0 || firstBody.node?.position.x < (secondBody.node?.position.x)! - (secondBody.node?.frame.size.width)!/2.0) {
@@ -258,10 +270,8 @@ extension TheWallScene:SKPhysicsContactDelegate
                 
             }
           
-            /*
-            let sound = pingSounds[1]
-            self.runAction(sound)
-            */
+            runAction(pingSounds[1])
+            
         case BallCategory:
             //The ball can't collide with itself
             break

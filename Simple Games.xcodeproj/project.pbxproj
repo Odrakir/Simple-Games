@@ -19,6 +19,9 @@
 		8C2B41D61BD80AB6009539FA /* GridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41D51BD80AB6009539FA /* GridNode.swift */; };
 		8C2B41DB1BD80C42009539FA /* ColumnsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41DA1BD80C42009539FA /* ColumnsScene.swift */; };
 		8C2B41DD1BD8197C009539FA /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B41DC1BD8197C009539FA /* BlockNode.swift */; };
+		8C4889C01BE6062F00CB1B84 /* ping1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C4889BD1BE6062F00CB1B84 /* ping1.mp3 */; };
+		8C4889C11BE6062F00CB1B84 /* ping2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C4889BE1BE6062F00CB1B84 /* ping2.mp3 */; };
+		8C4889C21BE6062F00CB1B84 /* puck.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C4889BF1BE6062F00CB1B84 /* puck.mp3 */; };
 		8CA8FD4D1BE4B32500A6610F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C2B41B91BD80199009539FA /* Assets.xcassets */; };
 		8CA8FD511BE4B33C00A6610F /* columns.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CA8FD4F1BE4B33B00A6610F /* columns.png */; };
 		8CA8FD521BE4B33C00A6610F /* thewall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CA8FD501BE4B33B00A6610F /* thewall.png */; };
@@ -32,22 +35,11 @@
 		8CB2B6A31BDA3D36008828EE /* ColumnNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2B6A21BDA3D36008828EE /* ColumnNode.swift */; };
 		8CB2B6AB1BDA47C1008828EE /* TVServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB2B6AA1BDA47C1008828EE /* TVServices.framework */; };
 		8CB2B6AE1BDA47C1008828EE /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2B6AD1BDA47C1008828EE /* ServiceProvider.swift */; };
-		8CB2B6B21BDA47C1008828EE /* Games Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8CB2B6A81BDA47C1008828EE /* Games Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8CE4E47B1BD8DD5600676AE3 /* BallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4E47A1BD8DD5600676AE3 /* BallNode.swift */; };
 		8CE4E47D1BD8F50400676AE3 /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4E47C1BD8F50400676AE3 /* LevelManager.swift */; };
 		8CE4E47F1BD8F88600676AE3 /* PaddleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4E47E1BD8F88600676AE3 /* PaddleNode.swift */; };
 		8CE4E4811BD8FF5600676AE3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4E4801BD8FF5600676AE3 /* GameScene.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8CB2B6B01BDA47C1008828EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8C2B41A51BD80199009539FA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CB2B6A71BDA47C1008828EE;
-			remoteInfo = "Games Extension";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		8CB2B6B61BDA47C1008828EE /* Embed App Extensions */ = {
@@ -56,7 +48,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8CB2B6B21BDA47C1008828EE /* Games Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +69,9 @@
 		8C2B41D51BD80AB6009539FA /* GridNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GridNode.swift; path = Games/Common/GridNode.swift; sourceTree = "<group>"; };
 		8C2B41DA1BD80C42009539FA /* ColumnsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColumnsScene.swift; path = Games/Columns/ColumnsScene.swift; sourceTree = "<group>"; };
 		8C2B41DC1BD8197C009539FA /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockNode.swift; path = Games/TheWall/BlockNode.swift; sourceTree = "<group>"; };
+		8C4889BD1BE6062F00CB1B84 /* ping1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ping1.mp3; sourceTree = "<group>"; };
+		8C4889BE1BE6062F00CB1B84 /* ping2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ping2.mp3; sourceTree = "<group>"; };
+		8C4889BF1BE6062F00CB1B84 /* puck.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = puck.mp3; sourceTree = "<group>"; };
 		8CA8FD4F1BE4B33B00A6610F /* columns.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = columns.png; sourceTree = "<group>"; };
 		8CA8FD501BE4B33B00A6610F /* thewall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thewall.png; sourceTree = "<group>"; };
 		8CB2B6981BDA3C3C008828EE /* ColumnPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColumnPosition.swift; path = Games/Columns/ColumnPosition.swift; sourceTree = "<group>"; };
@@ -163,6 +157,7 @@
 		8C2B41C41BD80661009539FA /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				8C4889BC1BE6062F00CB1B84 /* sounds */,
 				8CA8FD4E1BE4B33B00A6610F /* thumbs */,
 			);
 			path = assets;
@@ -214,6 +209,16 @@
 			name = Columns;
 			sourceTree = "<group>";
 		};
+		8C4889BC1BE6062F00CB1B84 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				8C4889BD1BE6062F00CB1B84 /* ping1.mp3 */,
+				8C4889BE1BE6062F00CB1B84 /* ping2.mp3 */,
+				8C4889BF1BE6062F00CB1B84 /* puck.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		8CA8FD4E1BE4B33B00A6610F /* thumbs */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,7 +261,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8CB2B6B11BDA47C1008828EE /* PBXTargetDependency */,
 			);
 			name = "Simple Games";
 			productName = "Simple Games";
@@ -324,9 +328,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C2B41BA1BD80199009539FA /* Assets.xcassets in Resources */,
+				8C4889C01BE6062F00CB1B84 /* ping1.mp3 in Resources */,
 				8C2B41B81BD80199009539FA /* Main.storyboard in Resources */,
 				8CA8FD511BE4B33C00A6610F /* columns.png in Resources */,
 				8CA8FD521BE4B33C00A6610F /* thewall.png in Resources */,
+				8C4889C21BE6062F00CB1B84 /* puck.mp3 in Resources */,
+				8C4889C11BE6062F00CB1B84 /* ping2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,14 +414,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8CB2B6B11BDA47C1008828EE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CB2B6A71BDA47C1008828EE /* Games Extension */;
-			targetProxy = 8CB2B6B01BDA47C1008828EE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8C2B41B61BD80199009539FA /* Main.storyboard */ = {
