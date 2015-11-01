@@ -27,16 +27,16 @@ class ServiceProvider: NSObject, TVTopShelfProvider {
         var contentItems = [TVContentItem]();
         
         var item = TVContentItem(contentIdentifier: TVContentIdentifier(identifier: "theWall", container: nil)!)
-        item!.imageURL = NSBundle.mainBundle().URLForResource("theWall_cover.png", withExtension: nil)
-        item!.imageShape = .Square
+        item!.imageURL = NSBundle.mainBundle().URLForResource("thewall.png", withExtension: nil)
+        item!.imageShape = .HDTV
         
         item!.displayURL = NSURL(string: "launchgame://theWall")
         item!.title = "The Wall"
         contentItems.append(item!)
         
         item = TVContentItem(contentIdentifier: TVContentIdentifier(identifier: "columns", container: nil)!)
-        item!.imageURL = NSBundle.mainBundle().URLForResource("columns_cover.png", withExtension: nil)
-        item!.imageShape = .Square
+        item!.imageURL = NSBundle.mainBundle().URLForResource("columns.png", withExtension: nil)
+        item!.imageShape = .HDTV
         
         item!.displayURL = NSURL(string: "launchgame://columns")
         item!.title = "Columns"
